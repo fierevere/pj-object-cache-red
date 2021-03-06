@@ -1,20 +1,16 @@
 <?php
 /**
- * Plugin Name: Pressjitsu Redis Object Cache
- * Plugin URI:  https://github.com/pressjitsu/pj-object-cache-red
+ * Plugin Name: PJF Redis Object Cache
+ * Plugin URI:  https://github.com/fierevere/pj-object-cache-red
  * Version:     1.2
- * Author:      Pressjitsu, Inc.
- * Author URI:  https://pressjitsu.com
- * https://github.com/pressjitsu/pj-object-cache-red
+ * Author:      Pressjitsu Inc., Eric Mann & Erick Hitter, Yui
+ * Author URI:  https://github.com/fierevere/pj-object-cache-red
  * Description: A fork of the most popular implementation by Eric Mann & Erick Hitter but with a performance twist - preloading!
  * License:     GPLv3
  * License URI: https://www.gnu.org/licenses/quick-guide-gplv3.html
  */
 
-/**
- * Check if Redis class is installed and caching is not disabled.
- * If false, prevent functions and classes from being defined.
- */
+
 if ( class_exists( 'Redis' ) && ( ! defined( 'WP_REDIS_DISABLED' ) || ! WP_REDIS_DISABLED ) ):
 
 /**
