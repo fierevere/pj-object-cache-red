@@ -387,9 +387,10 @@ class WP_Object_Cache {
 		 * multi single WP installs on the same server.
 		 */
 		if ( ! defined( 'WP_CACHE_KEY_SALT' ) ) {
-		    $siteurl = get_site_url();
+		    $siteurl = $_SERVER['HTTP_HOST'];
+		    if ($siteurl) {
 			define( 'WP_CACHE_KEY_SALT', $siteurl . ':' );
-		}
+		}}
 
 		$this->multisite = is_multisite();
 		$this->blog_prefix = $this->multisite ? get_current_blog_id() . ':' : '';
