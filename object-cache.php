@@ -10,6 +10,14 @@
  * License URI: https://www.gnu.org/licenses/quick-guide-gplv3.html
  */
 
+/* example defines for wp-config.php:
+ 
+define('WP_REDIS_CLIENT',    'pecl');
+define('WP_REDIS_SCHEME',    'unix');
+define('WP_REDIS_PATH',      '/tmp/redis.socket');
+define('WP_REDIS_MAXTTL',    '21600');
+  
+ */
 
 if ( class_exists( 'Redis' ) && ( ! defined( 'WP_REDIS_DISABLED' ) || ! WP_REDIS_DISABLED ) ):
 
