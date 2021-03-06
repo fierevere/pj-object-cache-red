@@ -717,8 +717,9 @@ class WP_Object_Cache {
 		else { // Support MAXTTL 
 			if ( defined( 'WP_REDIS_MAXTTL' ) && WP_REDIS_MAXTTL ){
 			$this->redis->setex( $redis_key, WP_REDIS_MAXTTL, $value);
-			} else {
-			$this->redis->set( $redis_key, $value);
+			} else { // no persistent caching anyway, use 86400 as MAX TTL
+			$this->redis->setex( $redis_key, 86400, $value);
+			// $this->redis->set( $redis_key, $value);
 		}}
 		
 
