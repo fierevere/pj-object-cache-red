@@ -704,9 +704,14 @@ class WP_Object_Cache {
 		// Save to Redis
 		if ( $expiration ) {
 			$this->redis->setex( $redis_key, $expiration, $value );
-		} else {
-			$this->redis->set( $redis_key, $value );
-		}
+		} 
+		else { // Support MAXTTL 
+			if ( defined( 'WP_REDIS_MAXTTL' ) && WP_REDIS_MAXTTL ){
+			$this->redis->setex( $redis_key, WP_REDIS_MAXTTL, $value);
+			} else {
+			$this->redis->set( $redis_key, $value);
+		}}
+		
 
 		return true;
 	}
