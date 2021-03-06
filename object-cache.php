@@ -368,11 +368,12 @@ class WP_Object_Cache {
 		}
 
 		/**
-		 * This approach is borrowed from Sivel and Boren. Use the salt for easy cache invalidation and for
+		 * Use the salt for easy cache invalidation and for
 		 * multi single WP installs on the same server.
 		 */
 		if ( ! defined( 'WP_CACHE_KEY_SALT' ) ) {
-			define( 'WP_CACHE_KEY_SALT', '' );
+		    $siteurl = get_site_url();
+			define( 'WP_CACHE_KEY_SALT', $siteurl . ':' );
 		}
 
 		$this->multisite = is_multisite();
