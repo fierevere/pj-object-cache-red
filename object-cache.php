@@ -348,8 +348,15 @@ class WP_Object_Cache {
 			if ( is_null( $redis_instance ) ) {
 				$redis_instance = new Redis();
 			}
+		    if ( defined( 'WP_REDIS_PATH' ) && WP_REDIS_PATH ) {
+			$this->redis->connect(WP_REDIS_PATH); // unix socket support
+		    }
+            else // connect to array defined above with host and port 
+            {
 			$this->redis = $redis_instance;
 			$this->redis->connect( $redis['host'], $redis['port'] );
+		    }
+		    
 			$this->redis->setOption( Redis::OPT_SERIALIZER, Redis::SERIALIZER_NONE );
 
 			if ( isset( $redis['auth'] ) ) {
